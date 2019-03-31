@@ -6,7 +6,7 @@ function boot() {
     win.loadURL(url.format({
         pathname: 'index.html',
         slashes: true
-    }))
+    }));
 win.maximize()
 }
 
