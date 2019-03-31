@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Splash Tag</title>
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
+    <script language="javascript" type="text/javascript" src="game.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Black Ops One' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Cute Font' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Baloo Chettan' rel='stylesheet'>
+    <style>
+        p {
+            font-family: 'Cute Font';
+            font-size: 75px;
+            margin: 0px;
+            height: 70px;
+        }
+        h1 {
+             font-family: 'Baloo Chettan';
+             font-size: 55px;
+             margin: 0px;
+             height: 70px;
+             position: absolute;
+             top: 6px;
+             left: 425px;
+         }
+        h2 {
+            color: crimson;
+            font-family: 'Baloo Chettan';
+            font-size: 60px;
+            margin: 0px;
+            height: 70px;
+            position: absolute;
+            top: 0;
+            left: 725px;
+        }
+        #guess {
+            position: absolute;
+            top: 761px;
+            left: 1420px;
+            width: 300px;
+            height: 60px;
+            font-family: 'Cute Font';
+            font-size:50px;
+        }
+        #guessButton {
+            position: absolute;
+            top: 761px;
+            left: 1725px;
+            width: 175px;
+            height: 65px;
+            font-size:24px;
+            font-family: 'Baloo Chettan';
+        }
+        #clearButton {
+            position: absolute;
+            top: 17px;
+            left: 1305px;
+            width: 100px;
+            height: 60px;
+            font-size:25px;
+            font-family: 'Baloo Chettan';
+        }
+        #blackButton {
+            position: absolute;
+            top: 840px;
+            left: 8px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+        }
+        #redButton {
+            position: absolute;
+            top: 840px;
+            left: 98px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+            color: red;
+        }
+        #orangeButton {
+            position: absolute;
+            top: 840px;
+            left: 188px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+            color: orange;
+        }
+        #yellowButton {
+            position: absolute;
+            top: 840px;
+            left: 278px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+            color: yellow;
+        }
+        #greenButton {
+            position: absolute;
+            top: 840px;
+            left: 368px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+            color: green;
+        }
+        #blueButton {
+            position: absolute;
+            top: 840px;
+            left: 458px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+            color: blue;
+        }
+        #purpleButton {
+            position: absolute;
+            top: 840px;
+            left: 548px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+            color: purple;
+        }
+        #brownButton {
+            position: absolute;
+            top: 840px;
+            left: 638px;
+            width: 80px;
+            height: 40px;
+            font-size:20px;
+            font-family: 'Baloo Chettan';
+            color: brown;
+        }
+        #eraseButton {
+            position: absolute;
+            top: 830px;
+            left: 1305px;
+            width: 100px;
+            height: 60px;
+            font-size:25px;
+            font-family: 'Baloo Chettan';
+        }
+    </style>
+</head>
+<body>
+<p id="timer" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;"></p>
+<h1 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">Your word: </h1>
+<h2 id="randomWord" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;"></h2>
+<input id="guess" type="text" >
+<button id="guessButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="takeGuess();">Make Guess!</button>
+<button id="clearButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="clearBoard();strokeWeight(5)">CLEAR</button>
+<button id="blackButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('black');">Black</button>
+<button id="redButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('red');">Red</button>
+<button id="orangeButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('orange');">Orange</button>
+<button id="yellowButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('yellow');">Yellow</button>
+<button id="greenButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('green');">Green</button>
+<button id="blueButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('blue');">Blue</button>
+<button id="purpleButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('purple');">Purple</button>
+<button id="brownButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('brown');">Brown</button>
+<button id="eraseButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('white');strokeWeight(30)">ERASER</button>
+<script>
+    var input = document.getElementById("guess");
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("guessButton").click();
+        }
+    });
+</script>
+</body>
+</html>
