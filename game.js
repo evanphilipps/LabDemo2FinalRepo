@@ -37,6 +37,7 @@ function setup() {
         if(counter >= timeleft-10 && counter < timeleft) {
             tenSecondsLeft.play();
             timer.style("color", "#FF0000");
+            setTimeout(function(){timer.style("color", "#FFFFFF")}, 500)
         }
     }
     strokeWeight(5);
@@ -73,14 +74,13 @@ function takeGuess(){
         document.getElementById("guess").style.backgroundColor = "#FF0000";
         buzz.play();
         setTimeout(function(){document.getElementById("guess").style.backgroundColor = "#FFFFFF"}, 1000);
-
     }
 }
 
 function clearBoard(){
     clear();
     strokeWeight(10);
-    noFill();
+    fill(255);
     stroke(0);
     rect(0, 0, w, h);
 
