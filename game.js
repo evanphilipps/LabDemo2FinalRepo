@@ -5,6 +5,8 @@ var timesup;
 var randomWord;
 var ding;
 var buzz;
+var i = 0;
+var list = [];
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
     timesup = loadSound("sounds/airhorn.mp3");
@@ -32,7 +34,6 @@ function setup() {
             timesup.play();
             clearInterval(interval);
             counter = 0;
-
         }
         if(counter >= timeleft-10 && counter < timeleft) {
             tenSecondsLeft.play();
@@ -90,3 +91,32 @@ function changeColor(color) {
     strokeWeight(5);
     stroke(color)
 }
+
+function User(){
+    this.name = "";
+    this.score = 0;
+    this.guess = "";
+    this.artist = false;
+    this.id = 1;
+    if(this.artist === true){
+        draw();
+    }
+}
+
+
+function drawer(){
+    if (i >= list.length){ // is i > 3?
+        i = 0;
+    }
+    var currentPlayer = list[i];
+    currentPlayer.artist = true;
+    i++
+}
+
+function reset(){
+    for(var x in list){
+        list[x].artist = false;
+    }
+}
+
+drawer();
