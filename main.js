@@ -1,13 +1,10 @@
 const {app, BrowserWindow} = require('electron');
-const url = require('url');
 
-function boot() {
-    win = new BrowserWindow();
-    win.loadURL(url.format({
-        pathname: 'index.html',
-        slashes: true
-    }));
-win.maximize()
+
+function createWindow() {
+    win = new BrowserWindow({ titleBarStyle: 'hidden' , webPreferences: {zoomFactor: 10.0, nodeIntegration: false}});
+    win.loadFile('index.html');
+    win.maximize()
 }
 
-app.on('ready', boot);
+app.on('ready', createWindow);

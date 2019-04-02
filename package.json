@@ -1,17 +1,8 @@
 {
-  "name": "labdemo2repo",
-  "version": "1.0.0",
-  "description": "",
+  "name": "LabDemo2FinalRepo",
+  "version": "0.1.0",
   "main": "main.js",
-  "dependencies": {
-    "express": "^4.16.4"
-  },
-  "devDependencies": {
-    "electron": "^4.1.3"
-  },
   "scripts": {
-    "start": "./node_modules/.bin/electron ."
-  },
-  "author": "",
-  "license": "ISC"
+    "start": "electron ."
+  }
 }
