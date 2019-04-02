@@ -8,6 +8,7 @@ var buzz;
 var word;
 var i = 0;
 var list = [];
+var int = 0;
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
     timesup = loadSound("sounds/airhorn.mp3");
