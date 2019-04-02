@@ -101,6 +101,9 @@ function User(){
     this.id = 1;
     if(this.artist === true){
         draw();
+        word.html(randomWord);
+    } else {
+        word.html("Guess!");
     }
 }
 
@@ -120,4 +123,3 @@ function reset(){
     }
 }
 
-drawer();
