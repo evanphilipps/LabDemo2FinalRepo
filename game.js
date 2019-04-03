@@ -100,7 +100,7 @@ function changeColor(color) {
 
 
 }
-/*
+
 function User(){
     this.name = "";
     this.score = 0;
@@ -129,4 +129,4 @@ function reset(){
 }
 
 drawer();
-*/
+
