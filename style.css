@@ -23,12 +23,33 @@ h2 {
     top: 0;
     left: 725px;
 }
+h3 {
+     color: #a8b7e8;
+     font-family: 'Baloo Chettan';
+     font-size: 20px;
+     margin: 0px;
+     height: 70px;
+     position: absolute;
+     top: 800px;
+     left: 12px;
+ }
+h4 {
+    color: #a8b7e8;
+    font-family: 'Baloo Chettan';
+    font-size: 20px;
+    margin: 0px;
+    height: 70px;
+    position: absolute;
+    top: 800px;
+    left: 150px;
+}
+
 input {
     position: absolute;
     top: 761px;
-    left: 1415px;
+    left: 1414px;
     width: 300px;
-    height: 61px;
+    height: 62px;
     font-family: 'Cute Font';
     font-size:50px;
     background: rgba(255,255,255,0.1);
@@ -53,8 +74,8 @@ input {
 }
 #clearButton {
     position: absolute;
-    top: 17px;
-    left: 1305px;
+    top: 15px;
+    left: 1309px;
     width: 100px;
     height: 60px;
     font-size:25px;
@@ -141,8 +162,8 @@ input {
 }
 #eraseButton {
     position: absolute;
-    top: 830px;
-    left: 1305px;
+    top: 832px;
+    left: 1309px;
     width: 100px;
     height: 60px;
     font-size:25px;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Color Splash Tag</title>
+    <title>Guessy Sketchery</title>
     <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
     <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
     <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
@@ -11,11 +11,14 @@
     <link href='https://fonts.googleapis.com/css?family=Cute Font' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Baloo Chettan' rel='stylesheet'>
     <link href='style.css' rel='stylesheet' type="text/css">
+    <link rel="shortcut icon" type="image/png" href="https://i.imgur.com/WaMmeF0.png"/>
 </head>
 <body>
 <p id="timer" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;"></p>
 <h1 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">Your word: </h1>
 <h2 id="randomWord" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;"></h2>
+<h3 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">Current Color:</h3>
+<h4 id='colorSelected' style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">black</h4>
 <input id="guess" type="text">
 <button id="guessButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="takeGuess();">Make Guess!</button>
 <button id="clearButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="clearBoard();strokeWeight(5)">CLEAR</button>

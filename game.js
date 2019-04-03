@@ -7,18 +7,23 @@ var ding;
 var buzz;
 var i = 0;
 var list = [];
+var colorNow;
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
     timesup = loadSound("sounds/airhorn.mp3");
     ding = loadSound("sounds/ding.mp3");
     buzz = loadSound("sounds/buzz.mp3");
+    masterVolume(.5);
 }
 function setup() {
+
     w = 1400;
     h = 750;
     createCanvas(w, h);
-    strokeWeight(10);
+    noStroke();
     rect(0, 0, w, h);
+    stroke(0);
+    strokeWeight(5);
     frameRate(60);
     var words = ['cheese', 'bone', 'socks', 'leaf', 'whale', 'pie', 'shirt', 'orange', 'lollipop', 'bed', 'mouth', 'person', 'horse', 'snake', 'jar', 'spoon', 'lamp', 'kite', 'monkey', 'swing', 'cloud', 'snowman', 'baby', 'eyes', 'pen', 'giraffe', 'grapes', 'book', 'ocean', 'star', 'cupcake', 'cow', 'lips', 'worm', 'sun', 'basketball', 'hat', 'bus', 'chair', 'purse', 'head', 'spider','shoe', 'ghost', 'coat', 'chicken', 'heart', 'jellyfish', 'tree', 'seashell', 'duck', 'bracelet', 'grass', 'jacket', 'slide', 'doll', 'spider', 'clock', 'cup', 'bridge', 'apple', 'balloon', 'drum', 'ears', 'egg', 'bread', 'nose', 'house', 'beach', 'airplane', 'inchworm', 'hippo', 'light', 'turtle', 'ball', 'carrot', 'cherry', 'ice', 'pencil', 'circle', 'bed', 'ant', 'girl', 'glasses', 'flower', 'mouse', 'banana', 'alligator', 'bell', 'robot', 'smile', 'bike', 'rocket', 'dinosaur', 'dog', 'bunny', 'cookie', 'bowl', 'apple', 'door', 'horse', 'door', 'song', 'trip', 'backbone', 'bomb', 'round', 'treasure', 'garbage', 'park', 'whistle', 'palace', 'baseball', 'coal', 'queen', 'dominoes', 'photograph', 'computer', 'hockey', 'aircraft', 'pepper', 'key', 'ipad', 'whisk', 'cake', 'circus', 'battery', 'mailman', 'cowboy', 'password', 'bicycle', 'skate', 'electricity', 'lightsaber', 'nature', 'shallow', 'toast', 'outside', 'America', 'roller', 'blading', 'gingerbread', 'man', 'bowtie', 'light', 'bulb', 'platypus', 'music', 'sailboat', 'popsicle', 'knee', 'pineapple', 'tusk', 'sprinkler','money', 'spool', 'lighthouse', 'doormat', 'face', 'flute', 'owl', 'gate', 'suitcase', 'bathroom', 'scale', 'peach', 'newspaper', 'watering', 'can', 'hook', 'school', 'beaver', 'camera', 'hair', 'dryer', 'mushroom', 'quilt', 'chalk', 'dollar', 'soda', 'chin', 'swing', 'garden','ticket', 'boot', 'cello', 'rain', 'clam', 'pelican', 'stingray', 'nail', 'sheep', 'stoplight', 'coconut', 'crib', 'hippopotamus', 'ring', 'video', 'camera', 'snowflake'];
     randomWord = words[getRandomInt(0, words.length-1)].toString();
@@ -41,10 +46,11 @@ function setup() {
             setTimeout(function(){timer.style("color", "#FFFFFF")}, 500)
         }
     }
-    strokeWeight(5);
+    colorNow = select("#colorSelected");
 }
 
 function draw() {
+    strokeWeight(5);
     if (mouseIsPressed && counter !== 0) {
         line(mouseX, mouseY, pmouseX, pmouseY);
     }
@@ -80,18 +86,21 @@ function takeGuess(){
 
 function clearBoard(){
     clear();
-    strokeWeight(10);
+    noStroke();
     fill(255);
-    stroke(0);
     rect(0, 0, w, h);
-
+    stroke(0);
+    strokeWeight(5);
 }
 
 function changeColor(color) {
+    colorNow.html(color);
+    stroke(color);
     strokeWeight(5);
-    stroke(color)
-}
 
+
+}
+/*
 function User(){
     this.name = "";
     this.score = 0;
@@ -120,4 +129,4 @@ function reset(){
 }
 
 drawer();
-
+*/
