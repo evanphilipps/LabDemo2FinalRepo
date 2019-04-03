@@ -35,7 +35,7 @@ function setup() {
     function timeIt() {
         counter++;
         timer.html(convertSeconds(timeleft - counter));
-        if(counter == timeleft) {
+        if(counter === timeleft) {
             timesup.play();
             clearInterval(interval);
             counter = 0;
@@ -50,7 +50,6 @@ function setup() {
 }
 
 function draw() {
-    strokeWeight(5);
     if (mouseIsPressed && counter !== 0) {
         line(mouseX, mouseY, pmouseX, pmouseY);
     }
@@ -66,14 +65,14 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 function takeGuess(){
     var guess = document.getElementById("guess").value;
     var actual = randomWord;
     print(guess);
     print(actual);
-    if(guess == actual) {
+    if(guess === actual) {
         document.getElementById("guess").style.backgroundColor = "#00FF00";
         ding.play()
     }
@@ -91,12 +90,14 @@ function clearBoard(){
     rect(0, 0, w, h);
     stroke(0);
     strokeWeight(5);
+    colorNow.html("black");
 }
 
-function changeColor(color) {
+function changeColor(color, size) {
     colorNow.html(color);
     stroke(color);
-    strokeWeight(5);
+    strokeWeight(size);
+    print(size)
 
 
 }
