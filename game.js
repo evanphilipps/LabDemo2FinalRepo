@@ -7,6 +7,10 @@ var ding;
 var buzz;
 var i = 0;
 var list = [];
+var timer;
+var interval;
+var word;
+var points;
 var colorNow;
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
@@ -16,29 +20,27 @@ function preload() {
     masterVolume(.5);
 }
 function setup() {
-
     w = 1400;
     h = 750;
     createCanvas(w, h);
     noStroke();
-    rect(0, 0, w, h);
+    rect(0, 0, w, h)
     stroke(0);
     strokeWeight(5);
     frameRate(60);
     var words = ['cheese', 'bone', 'socks', 'leaf', 'whale', 'pie', 'shirt', 'orange', 'lollipop', 'bed', 'mouth', 'person', 'horse', 'snake', 'jar', 'spoon', 'lamp', 'kite', 'monkey', 'swing', 'cloud', 'snowman', 'baby', 'eyes', 'pen', 'giraffe', 'grapes', 'book', 'ocean', 'star', 'cupcake', 'cow', 'lips', 'worm', 'sun', 'basketball', 'hat', 'bus', 'chair', 'purse', 'head', 'spider','shoe', 'ghost', 'coat', 'chicken', 'heart', 'jellyfish', 'tree', 'seashell', 'duck', 'bracelet', 'grass', 'jacket', 'slide', 'doll', 'spider', 'clock', 'cup', 'bridge', 'apple', 'balloon', 'drum', 'ears', 'egg', 'bread', 'nose', 'house', 'beach', 'airplane', 'inchworm', 'hippo', 'light', 'turtle', 'ball', 'carrot', 'cherry', 'ice', 'pencil', 'circle', 'bed', 'ant', 'girl', 'glasses', 'flower', 'mouse', 'banana', 'alligator', 'bell', 'robot', 'smile', 'bike', 'rocket', 'dinosaur', 'dog', 'bunny', 'cookie', 'bowl', 'apple', 'door', 'horse', 'door', 'song', 'trip', 'backbone', 'bomb', 'round', 'treasure', 'garbage', 'park', 'whistle', 'palace', 'baseball', 'coal', 'queen', 'dominoes', 'photograph', 'computer', 'hockey', 'aircraft', 'pepper', 'key', 'ipad', 'whisk', 'cake', 'circus', 'battery', 'mailman', 'cowboy', 'password', 'bicycle', 'skate', 'electricity', 'lightsaber', 'nature', 'shallow', 'toast', 'outside', 'America', 'roller', 'blading', 'gingerbread', 'man', 'bowtie', 'light', 'bulb', 'platypus', 'music', 'sailboat', 'popsicle', 'knee', 'pineapple', 'tusk', 'sprinkler','money', 'spool', 'lighthouse', 'doormat', 'face', 'flute', 'owl', 'gate', 'suitcase', 'bathroom', 'scale', 'peach', 'newspaper', 'watering', 'can', 'hook', 'school', 'beaver', 'camera', 'hair', 'dryer', 'mushroom', 'quilt', 'chalk', 'dollar', 'soda', 'chin', 'swing', 'garden','ticket', 'boot', 'cello', 'rain', 'clam', 'pelican', 'stingray', 'nail', 'sheep', 'stoplight', 'coconut', 'crib', 'hippopotamus', 'ring', 'video', 'camera', 'snowflake'];
     randomWord = words[getRandomInt(0, words.length-1)].toString();
-    var timer = select("#timer");
-    var word = select('#randomWord');
+    timer = select("#timer");
+    word = select('#randomWord');
     timer.html(convertSeconds(timeleft - counter));
     word.html(randomWord);
-    var interval = setInterval(timeIt, 1000);
+    interval = setInterval(timeIt, 1000);
     function timeIt() {
         counter++;
         timer.html(convertSeconds(timeleft - counter));
-        if(counter == timeleft) {
+        if(counter === timeleft) {
             timesup.play();
             clearInterval(interval);
-            counter = 0;
         }
         if(counter >= timeleft-10 && counter < timeleft) {
             tenSecondsLeft.play();
@@ -69,20 +71,27 @@ function getRandomInt(min, max) {
 };
 
 function takeGuess(){
-    var guess = document.getElementById("guess").value;
-    var actual = randomWord;
-    print(guess);
-    print(actual);
-    if(guess == actual) {
+    let guess = document.getElementById("guess").value;
+    var currentPoints = 0;
+    points = select("#score");
+    points.html(currentPoints);
+    if(guess === randomWord) {
         document.getElementById("guess").style.backgroundColor = "#00FF00";
-        ding.play()
+        document.getElementById("guess").value ="";
+        ding.play();
+        clearInterval(interval);
+        currentPoints = currentPoints + 10;
+        points.html(currentPoints);
     }
     else {
         document.getElementById("guess").style.backgroundColor = "#FF0000";
+        document.getElementById("guess").value ="";
         buzz.play();
         setTimeout(function(){document.getElementById("guess").style.backgroundColor = "#FFFFFF"}, 1000);
     }
 }
+
+
 
 function clearBoard(){
     clear();
@@ -97,8 +106,6 @@ function changeColor(color) {
     colorNow.html(color);
     stroke(color);
     strokeWeight(5);
-
-
 }
 
 function User(){
@@ -127,6 +134,4 @@ function reset(){
         list[x].artist = false;
     }
 }
-
-drawer();
 
