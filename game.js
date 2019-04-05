@@ -1,5 +1,5 @@
 var counter = 0;
-var timeleft = 25;
+var timeleft = 120;
 var tenSecondsLeft;
 var timesup;
 var randomWord;
@@ -25,7 +25,7 @@ function setup() {
     h = 750;
     createCanvas(w, h);
     noStroke();
-    rect(0, 0, w, h)
+    rect(0, 0, w, h);
     stroke(0);
     strokeWeight(5);
     frameRate(60);
@@ -53,7 +53,6 @@ function setup() {
 }
 
 function draw() {
-    strokeWeight(5);
     if (mouseIsPressed && counter !== 0) {
         line(mouseX, mouseY, pmouseX, pmouseY);
     }
@@ -69,7 +68,7 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 function takeGuess(){
     let guess = document.getElementById("guess").value;
@@ -101,12 +100,13 @@ function clearBoard(){
     rect(0, 0, w, h);
     stroke(0);
     strokeWeight(5);
+    colorNow.html('black');
 }
 
-function changeColor(color) {
+function changeColor(color, size) {
     colorNow.html(color);
     stroke(color);
-    strokeWeight(5);
+    strokeWeight(size);
 }
 
 function User(){
@@ -135,4 +135,3 @@ function reset(){
         list[x].artist = false;
     }
 }
-
