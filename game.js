@@ -12,6 +12,7 @@ var interval;
 var word;
 var points;
 var colorNow;
+var assert;
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
     timesup = loadSound("sounds/airhorn.mp3");
