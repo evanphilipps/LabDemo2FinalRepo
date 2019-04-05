@@ -7,6 +7,8 @@
     <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
     <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
     <script language="javascript" type="text/javascript" src="game.js"></script>
+    <script language="javascript" type="text/javascript" src="app.js"></script>
+    <script language="javascript" type="text/javascript" src="tests.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Black Ops One' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Cute Font' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Baloo Chettan' rel='stylesheet'>
@@ -19,6 +21,8 @@
 <h2 id="randomWord" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;"></h2>
 <h3 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">Current Color:</h3>
 <h4 id='colorSelected' style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">black</h4>
+<h5 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">Points: </h5>
+<h6 id='score' style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">0</h6>
 <input id="guess" type="text">
 <button id="guessButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="takeGuess();">Make Guess!</button>
 <button id="clearButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="clearBoard();strokeWeight(5)">CLEAR</button>
