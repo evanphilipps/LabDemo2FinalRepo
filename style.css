@@ -180,9 +180,18 @@ input {
     color: brown;
 }
 #eraseButton {
+     position: absolute;
+     top: 834px;
+     left: 1308px;
+     width: 100px;
+     height: 60px;
+     font-size:25px;
+     font-family: 'Baloo Chettan';
+ }
+#resetButton {
     position: absolute;
-    top: 834px;
-    left: 1308px;
+    top: 400px;
+    left: 1508px;
     width: 100px;
     height: 60px;
     font-size:25px;
