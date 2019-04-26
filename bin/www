@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../DrawingGame/app');
 var debug = require('debug')('labdemo2repo:server');
 var http = require('http');
 

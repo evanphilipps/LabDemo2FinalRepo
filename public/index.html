@@ -7,12 +7,13 @@
     <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
     <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
     <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
-    <script language="javascript" type="text/javascript" src="game.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Black Ops One' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Cute Font' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Baloo Chettan' rel='stylesheet'>
     <link href='style.css' rel='stylesheet' type="text/css">
     <link rel="shortcut icon" type="image/png" href="https://i.imgur.com/WaMmeF0.png"/>
+
 </head>
 <body>
 <p id="timer" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;"></p>
@@ -32,9 +33,9 @@
 <button id="purpleButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('purple', 5);">Purple</button>
 <button id="brownButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('brown', 5);">Brown</button>
 <button id="eraseButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="changeColor('white', 30);colorNow.html('eraser');">ERASER</button>
-<button id="resetButton" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;" onClick="reset()">reset</button>
 <h5 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">Points: </h5>
 <h6 id='score' style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">0</h6>
+<script language="javascript" type="text/javascript" src="game.js"></script>
 <script>
     var input = document.getElementById("guess");
     input.addEventListener("keyup", function(event) {

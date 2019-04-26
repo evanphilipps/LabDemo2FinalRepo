@@ -1,5 +1,6 @@
 var counter;
 var timeleft = 15;
+var currentArtistColor = "black";
 var pressed = false;
 var tenSecondsLeft;
 var timesup;
@@ -17,6 +18,9 @@ var assert;
 var words = ['cheese', 'bone', 'socks', 'leaf', 'whale', 'pie', 'shirt', 'orange', 'lollipop', 'bed', 'mouth', 'person', 'horse', 'snake', 'jar', 'spoon', 'lamp', 'kite', 'monkey', 'swing', 'cloud', 'snowman', 'baby', 'eyes', 'pen', 'giraffe', 'grapes', 'book', 'ocean', 'star', 'cupcake', 'cow', 'lips', 'worm', 'sun', 'basketball', 'hat', 'bus', 'chair', 'purse', 'head', 'spider','shoe', 'ghost', 'coat', 'chicken', 'heart', 'jellyfish', 'tree', 'seashell', 'duck', 'bracelet', 'grass', 'jacket', 'slide', 'doll', 'spider', 'clock', 'cup', 'bridge', 'apple', 'balloon', 'drum', 'ears', 'egg', 'bread', 'nose', 'house', 'beach', 'airplane', 'inchworm', 'hippo', 'light', 'turtle', 'ball', 'carrot', 'cherry', 'ice', 'pencil', 'circle', 'bed', 'ant', 'girl', 'glasses', 'flower', 'mouse', 'banana', 'alligator', 'bell', 'robot', 'smile', 'bike', 'rocket', 'dinosaur', 'dog', 'bunny', 'cookie', 'bowl', 'apple', 'door', 'horse', 'door', 'song', 'trip', 'backbone', 'bomb', 'round', 'treasure', 'garbage', 'park', 'whistle', 'palace', 'baseball', 'coal', 'queen', 'dominoes', 'photograph', 'computer', 'hockey', 'aircraft', 'pepper', 'key', 'ipad', 'whisk', 'cake', 'circus', 'battery', 'mailman', 'cowboy', 'password', 'bicycle', 'skate', 'electricity', 'lightsaber', 'nature', 'shallow', 'toast', 'outside', 'America', 'roller', 'blading', 'gingerbread', 'man', 'bowtie', 'light', 'bulb', 'platypus', 'music', 'sailboat', 'popsicle', 'knee', 'pineapple', 'tusk', 'sprinkler','money', 'spool', 'lighthouse', 'doormat', 'face', 'flute', 'owl', 'gate', 'suitcase', 'bathroom', 'scale', 'peach', 'newspaper', 'watering', 'can', 'hook', 'school', 'beaver', 'camera', 'hair', 'dryer', 'mushroom', 'quilt', 'chalk', 'dollar', 'soda', 'chin', 'swing', 'garden','ticket', 'boot', 'cello', 'rain', 'clam', 'pelican', 'stingray', 'nail', 'sheep', 'stoplight', 'coconut', 'crib', 'hippopotamus', 'ring', 'video', 'camera', 'snowflake'];
 var currentPoints = 0;
 var guessedCorrect = false;
+var socket;
+
+
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
     timesup = loadSound("sounds/airhorn.mp3");
@@ -25,10 +29,14 @@ function preload() {
     masterVolume(.5);
 }
 function setup() {
+
+
     w = 1400;
     h = 750;
     counter = 0;
     createCanvas(w, h);
+    socket = io.connect('http://localhost:3000');
+    socket.on('mouse', newDrawing);
     noStroke();
     rect(0, 0, w, h);
     stroke(0);
@@ -61,11 +69,31 @@ function setup() {
     }
     colorNow = select("#colorSelected");
 }
+function newDrawing(data){
+    colorNow.html(data.color );
+    stroke(data.color);
+    line(data.x, data.y, data.px, data.py);
+}
 
-function draw() {
+function mouseDragged(){
+    console.log("Sending: "+mouseX+","+mouseY+"    P's: "+pmouseX+","+pmouseY);
+
+    var data = {
+        username: "",
+        x: mouseX,
+        y: mouseY,
+        px: pmouseX,
+        py: pmouseY,
+        color: currentArtistColor.toString()
+    };
+
+    socket.emit('mouse', data);
     if (mouseIsPressed && counter !== timeleft) {
         line(mouseX, mouseY, pmouseX, pmouseY);
     }
+}
+function draw() {
+
 }
 
 function convertSeconds(s) {
@@ -119,6 +147,7 @@ function changeColor(color, size) {
     colorNow.html(color);
     stroke(color);
     strokeWeight(size);
+    currentArtistColor = color
 }
 
 function User(){
