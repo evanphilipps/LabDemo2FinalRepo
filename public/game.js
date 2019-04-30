@@ -19,7 +19,7 @@ var words = ['cheese', 'bone', 'socks', 'leaf', 'whale', 'pie', 'shirt', 'orange
 var currentPoints = 0;
 var guessedCorrect = false;
 var socket;
-
+var players;
 
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
@@ -29,13 +29,13 @@ function preload() {
     masterVolume(.5);
 }
 function setup() {
-
-
     w = 1400;
     h = 750;
     counter = 0;
     createCanvas(w, h);
     socket = io.connect('http://localhost:3000');
+    print(socket.username);
+    print("YESSIR");
     socket.on('mouse', newDrawing);
     noStroke();
     rect(0, 0, w, h);
