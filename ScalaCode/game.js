@@ -1,3 +1,4 @@
+var storage = require("./playerStorage");
 var counter;
 var timeleft = 15;
 var currentArtistColor = "black";
@@ -19,8 +20,10 @@ var words = ['cheese', 'bone', 'socks', 'leaf', 'whale', 'pie', 'shirt', 'orange
 var currentPoints = 0;
 var guessedCorrect = false;
 var socket;
-var players;
-
+var player;
+var username = "";
+var score = 0;
+var type = "guesser";
 function preload() {
     tenSecondsLeft = loadSound("sounds/countdownSound.mp3");
     timesup = loadSound("sounds/airhorn.mp3");
@@ -33,40 +36,26 @@ function setup() {
     h = 750;
     counter = 0;
     createCanvas(w, h);
-    socket = io.connect('http://localhost:3000');
-    print(socket.username);
-    print("YESSIR");
+    socket = io.connect('http://localhost:8080');
+    username = "user" + randInt(0, 100000).toString();
+    print(username);
+    if(!artistAssigned()){
+        type = "artist"
+    }
+    var player = new Player(username, score, type);
+    storage.players
+    print(player.username);
+    print(player.score);
+    print(player.type);
     socket.on('mouse', newDrawing);
     noStroke();
     rect(0, 0, w, h);
     stroke(0);
     strokeWeight(5);
     frameRate(60);
-    var timer = select("#timer");
     var word = select('#randomWord');
-    timer.html(convertSeconds(timeleft - counter));
     word.html(getRandomWord());
-    interval = setInterval(timeIt, 1000);
-    function timeIt() {
-        counter++;
-        timer.html(convertSeconds(timeleft - counter));
-        print(((document.getElementById("guess").value === randomWord) && (pressed === true)));
-        if((counter >= timeleft) || guessedCorrect){
-            timer.style("color", "#FF0000");
-            setTimeout(function(){timer.style("color", "#FFFFFF")}, 4000);
-            timesup.play();
-            clearInterval(interval);
-            counter = timeleft;
-            setTimeout(function(){reset();interval = setInterval(timeIt, 1000);guessedCorrect = false;}, 3000);
-            document.getElementById("guess").value = ""
-        }
-        if(counter >= timeleft-10 && counter < timeleft) {
-            tenSecondsLeft.play();
-            timer.style("color", "#FF0000");
-            setTimeout(function(){timer.style("color", "#FFFFFF")}, 500)
-        }
-
-    }
+    startTimer();
     colorNow = select("#colorSelected");
 }
 function newDrawing(data){
@@ -103,11 +92,11 @@ function convertSeconds(s) {
 }
 
 function getRandomWord(){
-    randomWord = words[getRandomInt(0, words.length-1)].toString();
+    randomWord = words[randInt(0, words.length-1)].toString();
     return randomWord
 }
 
-function getRandomInt(min, max) {
+function randInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -132,7 +121,16 @@ function takeGuess(){
     }
     }
 
-
+function artistAssigned(){
+    var bool = false;
+    // for(var player in storage.players){
+    //     if(player("type") == "artist"){
+    //         bool = true;
+    //         break;
+    //     }
+    // }
+    return bool
+}
 function clearBoard(){
     clear();
     noStroke();
@@ -143,6 +141,30 @@ function clearBoard(){
     colorNow.html('black');
 }
 
+function startTimer(){
+    var timer = select("#timer");
+    timer.html(convertSeconds(timeleft - counter));
+    interval = setInterval(timeIt, 1000);
+    function timeIt() {
+        counter++;
+        timer.html(convertSeconds(timeleft - counter));
+        if((counter >= timeleft) || guessedCorrect){
+            timer.style("color", "#FF0000");
+            setTimeout(function(){timer.style("color", "#FFFFFF")}, 4000);
+            timesup.play();
+            clearInterval(interval);
+            counter = timeleft;
+            setTimeout(function(){reset();interval = setInterval(timeIt, 1000);guessedCorrect = false;}, 3000);
+            document.getElementById("guess").value = ""
+        }
+        if(counter >= timeleft-10 && counter < timeleft) {
+            tenSecondsLeft.play();
+            timer.style("color", "#FF0000");
+            setTimeout(function(){timer.style("color", "#FFFFFF")}, 500)
+        }
+
+    }
+}
 function changeColor(color, size) {
     colorNow.html(color);
     stroke(color);
@@ -181,4 +203,11 @@ function reset(){
     for(var x in list){
         list[x].artist = false;
     }
+}
+
+
+function Player(username, score, type){
+    this.username = username;
+    this.score = score;
+    this.type = type;
 }

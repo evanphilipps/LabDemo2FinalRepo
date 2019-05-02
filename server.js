@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var app = express();
-var server = app.listen(3000);
+var server = app.listen(8080);
 
 app.use(express.static('public'));
 
@@ -15,7 +15,6 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket){
     console.log(Object.keys(io.sockets.sockets));
     var username = "user" + randInt(0, 100000).toString();
-    console.log("Username: "+username);
     //if user == drawer
     socket.on('mouse', mouseMsg);
 
